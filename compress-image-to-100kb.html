@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Compress Image to 100KB Online – Free | Make Your Image Fit</title>
+
+  <meta name="description" content="Compress JPG, PNG and WebP images to 100KB online for free. Reduce image file size in your browser while keeping the best possible quality. No upload required.">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://gobbaccio1989.github.io/make-your-image-fit/compress-image-to-100kb.html">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 0;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      color: #111827;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .home-link {
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 42px 0 60px;
+    }
+
+    .hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 34px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.1;
+      margin: 0 0 16px;
+      color: #111827;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #4b5563;
+      margin: 0;
+    }
+
+    .tool {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      max-width: 850px;
+      margin: 0 auto 45px;
+    }
+
+    .upload-area {
+      border: 2px dashed #9ca3af;
+      border-radius: 14px;
+      padding: 35px 20px;
+      text-align: center;
+      cursor: pointer;
+      background: #f9fafb;
+      transition: 0.2s;
+    }
+
+    .upload-area:hover,
+    .upload-area.dragover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
+    .upload-area strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .upload-area span {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    .preview {
+      margin-top: 25px;
+      text-align: center;
+      display: none;
+    }
+
+    .preview img {
+      max-width: 100%;
+      max-height: 350px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 9px;
+      background: #ffffff;
+      font-size: 15px;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .fixed-requirement {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 20px;
+      color: #1e3a8a;
+    }
+
+    .fixed-requirement strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .button {
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #2563eb;
+      color: #ffffff;
+      margin-top: 22px;
+      width: 100%;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+    }
+
+    .button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 18px;
+      padding: 13px;
+      border-radius: 9px;
+      display: none;
+      font-size: 14px;
+    }
+
+    .message.error {
+      display: block;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .message.success {
+      display: block;
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .result {
+      display: none;
+      margin-top: 30px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 25px;
+    }
+
+    .result h2 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .result-preview {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .result-preview img {
+      max-width: 100%;
+      max-height: 350px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .result-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 13px;
+      text-align: center;
+    }
+
+    .info-box strong {
+      display: block;
+      font-size: 18px;
+      color: #111827;
+    }
+
+    .info-box span {
+      color: #6b7280;
+      font-size: 12px;
+    }
+
+    .download {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: #111827;
+      color: #ffffff;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .download:hover {
+      background: #000000;
+    }
+
+    .content {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .content section {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 26px;
+      margin-bottom: 20px;
+    }
+
+    .content h2 {
+      margin-top: 0;
+      color: #111827;
+      font-size: 25px;
+    }
+
+    .content h3 {
+      color: #111827;
+      font-size: 19px;
+      margin-top: 25px;
+    }
+
+    .content a {
+      color: #2563eb;
+    }
+
+    footer {
+      border-top: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 25px 0;
+      color: #6b7280;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .result-info {
+        grid-template-columns: 1fr;
+      }
+
+      .tool {
+        padding: 18px;
+      }
+
+      main {
+        padding-top: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a class="brand" href="index.html">Make Your Image Fit</a>
+    <a class="home-link" href="index.html">← All image tools</a>
+  </div>
+</header>
+
+<main>
+
+  <div class="container">
+
+    <section class="hero">
+      <h1>Compress Image to 100KB Online</h1>
+      <p>
+        Compress JPG, PNG and WebP images to 100KB or less for free.
+        Reduce your image file size directly in your browser without uploading your image.
+      </p>
+    </section>
+
+    <section class="tool">
+
+      <label class="upload-area" id="uploadArea" for="fileInput">
+        <strong>Drop your image here</strong>
+        <span>or click to choose a JPG, PNG or WebP image</span>
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp">
+      </label>
+
+      <div class="preview" id="preview">
+        <img id="originalPreview" alt="Original image preview">
+      </div>
+
+      <div class="fixed-requirement">
+        <strong>Target file size: 100KB</strong>
+        The tool will automatically reduce JPEG or WebP quality as needed to try to reach 100KB or less.
+      </div>
+
+      <div class="controls">
+
+        <div class="field">
+          <label for="format">Output format</label>
+          <select id="format">
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WebP</option>
+            <option value="image/png">PNG</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mode">Sizing mode</label>
+          <select id="mode">
+            <option value="fit">Fit — keep proportions</option>
+            <option value="longest">Longest side — keep proportions</option>
+            <option value="crop">Crop — keep proportions</option>
+            <option value="stretch">Stretch — exact dimensions</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="width">Width (px), optional</label>
+          <input type="number" id="width" min="1" placeholder="Optional">
+        </div>
+
+        <div class="field">
+          <label for="height">Height (px), optional</label>
+          <input type="number" id="height" min="1" placeholder="Optional">
+        </div>
+
+        <div class="field full">
+          <label for="longestSide">Longest side (px), optional</label>
+          <input type="number" id="longestSide" min="1" placeholder="Optional">
+        </div>
+
+      </div>
+
+      <button class="button" id="compressButton" disabled>
+        Compress to 100KB
+      </button>
+
+      <div class="message" id="message"></div>
+
+      <div class="result" id="result">
+
+        <h2>Compressed image</h2>
+
+        <div class="result-preview">
+          <img id="resultPreview" alt="Compressed image preview">
+        </div>
+
+        <div class="result-info">
+
+          <div class="info-box">
+            <strong id="resultSize">—</strong>
+            <span>File size</span>
+          </div>
+
+          <div class="info-box">
+            <strong id="resultDimensions">—</strong>
+            <span>Dimensions</span>
+          </div>
+
+          <div class="info-box">
+            <strong id="resultFormat">—</strong>
+            <span>Format</span>
+          </div>
+
+        </div>
+
+        <a class="download" id="downloadButton" href="#" download>
+          Download compressed image
+        </a>
+
+      </div>
+
+    </section>
+
+    <div class="content">
+
+      <section>
+        <h2>How to compress an image to 100KB</h2>
+
+        <p>
+          If a website requires an image to be 100KB or smaller, you can use this free image compressor to reduce the file size directly in your browser.
+        </p>
+
+        <ol>
+          <li>Choose or drag your image into the tool.</li>
+          <li>Select the output format you want.</li>
+          <li>Choose your preferred sizing option if necessary.</li>
+          <li>Click <strong>Compress to 100KB</strong>.</li>
+          <li>Download the compressed image.</li>
+        </ol>
+
+        <p>
+          For JPEG and WebP images, the tool automatically adjusts image quality to try to reach the 100KB target while preserving as much quality as possible.
+        </p>
+      </section>
+
+      <section>
+        <h2>Why compress an image to 100KB?</h2>
+
+        <p>
+          Some websites, online forms and applications impose strict file-size limits.
+          A photo that looks perfectly normal can still be too large to upload because modern cameras and phones create high-resolution images.
+        </p>
+
+        <p>
+          Compressing an image to 100KB can make it easier to upload, share and use on websites with strict file-size requirements.
+        </p>
+      </section>
+
+      <section>
+        <h2>Does the image have to be exactly 100KB?</h2>
+
+        <p>
+          Usually, when a website says an image must be “100KB or less”, the important requirement is that the final file does not exceed 100KB.
+        </p>
+
+        <p>
+          This tool therefore aims for a file size at or below 100KB rather than trying to produce exactly 100.00KB.
+        </p>
+      </section>
+
+      <section>
+        <h2>Can I compress JPG, PNG and WebP images?</h2>
+
+        <p>
+          Yes. You can upload JPG, PNG and WebP images and choose the output format.
+          JPEG and WebP are generally more suitable when the goal is to reduce a photographic image to a small file size.
+        </p>
+
+        <p>
+          PNG files can sometimes remain relatively large because PNG uses lossless compression.
+          If a PNG cannot be reduced below 100KB at the selected dimensions, the tool will tell you.
+        </p>
+      </section>
+
+      <section>
+        <h2>Is this image compressor free?</h2>
+
+        <p>
+          Yes. Make Your Image Fit is free to use for image resizing, compression and conversion.
+        </p>
+      </section>
+
+      <section>
+        <h2>Are my images uploaded?</h2>
+
+        <p>
+          No. Image processing is performed directly in your browser using your device.
+          Your image does not need to be uploaded to a server for compression.
+        </p>
+      </section>
+
+      <section>
+        <h2>More image tools</h2>
+
+        <p>
+          Need a different requirement?
+          Visit the <a href="index.html">Make Your Image Fit image tool</a>
+          to resize, crop, compress or convert images to other dimensions and file sizes.
+        </p>
+      </section>
+
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    Make Your Image Fit — Free browser-based image tools.
+  </div>
+</footer>
+
+<script>
+(function () {
+
+  const fileInput = document.getElementById("fileInput");
+  const uploadArea = document.getElementById("uploadArea");
+  const originalPreview = document.getElementById("originalPreview");
+  const preview = document.getElementById("preview");
+
+  const format = document.getElementById("format");
+  const mode = document.getElementById("mode");
+  const widthInput = document.getElementById("width");
+  const heightInput = document.getElementById("height");
+  const longestSideInput = document.getElementById("longestSide");
+
+  const compressButton = document.getElementById("compressButton");
+  const message = document.getElementById("message");
+
+  const result = document.getElementById("result");
+  const resultPreview = document.getElementById("resultPreview");
+  const resultSize = document.getElementById("resultSize");
+  const resultDimensions = document.getElementById("resultDimensions");
+  const resultFormat = document.getElementById("resultFormat");
+  const downloadButton = document.getElementById("downloadButton");
+
+  let selectedFile = null;
+  let originalImage = null;
+  let currentObjectUrl = null;
+
+  const TARGET_BYTES = 100 * 1024;
+
+  function showMessage(text, type) {
+    message.textContent = text;
+    message.className = "message " + type;
+  }
+
+  function clearMessage() {
+    message.textContent = "";
+    message.className = "message";
+  }
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) {
+      return bytes + " B";
+    }
+
+    if (bytes < 1024 * 1024) {
+      return (bytes / 1024).toFixed(1) + " KB";
+    }
+
+    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+  }
+
+  function loadImage(file) {
+    return new Promise(function (resolve, reject) {
+
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+
+      img.onload = function () {
+        URL.revokeObjectURL(url);
+        resolve(img);
+      };
+
+      img.onerror = function () {
+        URL.revokeObjectURL(url);
+        reject(new Error("Unable to read this image."));
+      };
+
+      img.src = url;
+    });
+  }
+
+  function calculateDimensions(img) {
+
+    let w = img.naturalWidth;
+    let h = img.naturalHeight;
+
+    const requestedWidth = parseInt(widthInput.value, 10);
+    const requestedHeight = parseInt(heightInput.value, 10);
+    const requestedLongest = parseInt(longestSideInput.value, 10);
+
+    if (mode.value === "longest" && requestedLongest > 0) {
+
+      const longest = Math.max(w, h);
+      const scale = requestedLongest / longest;
+
+      w = Math.max(1, Math.round(w * scale));
+      h = Math.max(1, Math.round(h * scale));
+
+    } else if (mode.value === "stretch") {
+
+      if (requestedWidth > 0) {
+        w = requestedWidth;
+      }
+
+      if (requestedHeight > 0) {
+        h = requestedHeight;
+      }
+
+    } else if (mode.value === "fit") {
+
+      if (requestedWidth > 0 && requestedHeight > 0) {
+
+        const scale = Math.min(
+          requestedWidth / w,
+          requestedHeight / h
+        );
+
+        w = Math.max(1, Math.round(w * scale));
+        h = Math.max(1, Math.round(h * scale));
+
+      } else if (requestedWidth > 0) {
+
+        const scale = requestedWidth / w;
+
+        w = requestedWidth;
+        h = Math.max(1, Math.round(h * scale));
+
+      } else if (requestedHeight > 0) {
+
+        const scale = requestedHeight / h;
+
+        h = requestedHeight;
+        w = Math.max(1, Math.round(w * scale));
+      }
+
+    } else if (mode.value === "crop") {
+
+      if (requestedWidth > 0 && requestedHeight > 0) {
+        w = requestedWidth;
+        h = requestedHeight;
+      }
+    }
+
+    return {
+      width: w,
+      height: h
+    };
+  }
+
+  function drawCanvas(img, dimensions) {
+
+    const canvas = document.createElement("canvas");
+
+    canvas.width = dimensions.width;
+    canvas.height = dimensions.height;
+
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) {
+      throw new Error("Canvas is not supported by this browser.");
+    }
+
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+
+    if (mode.value === "crop" &&
+        parseInt(widthInput.value, 10) > 0 &&
+        parseInt(heightInput.value, 10) > 0) {
+
+      const targetRatio = dimensions.width / dimensions.height;
+      const sourceRatio = img.naturalWidth / img.naturalHeight;
+
+      let sourceWidth = img.naturalWidth;
+      let sourceHeight = img.naturalHeight;
+      let sourceX = 0;
+      let sourceY = 0;
+
+      if (sourceRatio > targetRatio) {
+        sourceWidth = Math.round(img.naturalHeight * targetRatio);
+        sourceX = Math.round((img.naturalWidth - sourceWidth) / 2);
+      } else {
+        sourceHeight = Math.round(img.naturalWidth / targetRatio);
+        sourceY = Math.round((img.naturalHeight - sourceHeight) / 2);
+      }
+
+      ctx.drawImage(
+        img,
+        sourceX,
+        sourceY,
+        sourceWidth,
+        sourceHeight,
+        0,
+        0,
+        dimensions.width,
+        dimensions.height
+      );
+
+    } else {
+
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        dimensions.width,
+        dimensions.height
+      );
+    }
+
+    return canvas;
+  }
+
+  function canvasToBlob(canvas, type, quality) {
+    return new Promise(function (resolve, reject) {
+
+      canvas.toBlob(function (blob) {
+
+        if (!blob) {
+          reject(new Error("Could not create the output image."));
+          return;
+        }
+
+        resolve(blob);
+
+      }, type, quality);
+    });
+  }
+
+  async function createCompressedBlob(canvas, type) {
+
+    if (type === "image/png") {
+
+      const blob = await canvasToBlob(canvas, type);
+
+      if (blob.size > TARGET_BYTES) {
+        throw new Error(
+          "This PNG image cannot be reduced to 100KB with PNG compression alone. Try JPEG or WebP, or reduce the image dimensions."
+        );
+      }
+
+      return blob;
+    }
+
+    let low = 0.05;
+    let high = 0.95;
+    let bestBlob = null;
+
+    for (let i = 0; i < 12; i++) {
+
+      const quality = (low + high) / 2;
+
+      const blob = await canvasToBlob(
+        canvas,
+        type,
+        quality
+      );
+
+      if (blob.size <= TARGET_BYTES) {
+
+        bestBlob = blob;
+        low = quality;
+
+      } else {
+
+        high = quality;
+      }
+    }
+
+    if (bestBlob) {
+      return bestBlob;
+    }
+
+    const minimumQualityBlob = await canvasToBlob(
+      canvas,
+      type,
+      0.01
+    );
+
+    if (minimumQualityBlob.size <= TARGET_BYTES) {
+      return minimumQualityBlob;
+    }
+
+    throw new Error(
+      "This image could not be reduced to 100KB at its current dimensions. Try reducing the image dimensions or using JPEG/WebP."
+    );
+  }
+
+  async function compressImage() {
+
+    if (!selectedFile || !originalImage) {
+      return;
+    }
+
+    clearMessage();
+
+    compressButton.disabled = true;
+    compressButton.textContent = "Compressing...";
+
+    result.style.display = "none";
+
+    try {
+
+      const dimensions = calculateDimensions(originalImage);
+
+      if (dimensions.width < 1 || dimensions.height < 1) {
+        throw new Error("Please enter valid image dimensions.");
+      }
+
+      const canvas = drawCanvas(
+        originalImage,
+        dimensions
+      );
+
+      const outputType = format.value;
+
+      const blob = await createCompressedBlob(
+        canvas,
+        outputType
+      );
+
+      if (currentObjectUrl) {
+        URL.revokeObjectURL(currentObjectUrl);
+      }
+
+      currentObjectUrl = URL.createObjectURL(blob);
+
+      resultPreview.src = currentObjectUrl;
+
+      resultSize.textContent = formatBytes(blob.size);
+
+      resultDimensions.textContent =
+        canvas.width + " × " + canvas.height;
+
+      if (outputType === "image/jpeg") {
+        resultFormat.textContent = "JPG";
+      } else if (outputType === "image/webp") {
+        resultFormat.textContent = "WebP";
+      } else {
+        resultFormat.textContent = "PNG";
+      }
+
+      const extension =
+        outputType === "image/jpeg"
+          ? "jpg"
+          : outputType === "image/webp"
+            ? "webp"
+            : "png";
+
+      downloadButton.href = currentObjectUrl;
+      downloadButton.download =
+        "compressed-image-100kb." + extension;
+
+      result.style.display = "block";
+
+      if (blob.size <= TARGET_BYTES) {
+
+        showMessage(
+          "Done. Your image is " +
+          formatBytes(blob.size) +
+          ", which is within the 100KB limit.",
+          "success"
+        );
+
+      } else {
+
+        showMessage(
+          "The image was compressed, but it is still above 100KB.",
+          "error"
+        );
+      }
+
+    } catch (error) {
+
+      showMessage(
+        error.message || "Something went wrong while compressing the image.",
+        "error"
+      );
+
+    } finally {
+
+      compressButton.disabled = false;
+      compressButton.textContent = "Compress to 100KB";
+    }
+  }
+
+  fileInput.addEventListener("change", async function () {
+
+    const file = fileInput.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    selectedFile = file;
+
+    try {
+
+      originalImage = await loadImage(file);
+
+      if (currentObjectUrl) {
+        URL.revokeObjectURL(currentObjectUrl);
+      }
+
+      currentObjectUrl = URL.createObjectURL(file);
+
+      originalPreview.src = currentObjectUrl;
+      preview.style.display = "block";
+
+      compressButton.disabled = false;
+
+      clearMessage();
+      result.style.display = "none";
+
+    } catch (error) {
+
+      selectedFile = null;
+      originalImage = null;
+      compressButton.disabled = true;
+
+      showMessage(
+        "Unable to read this image. Please choose another file.",
+        "error"
+      );
+    }
+  });
+
+  uploadArea.addEventListener("dragover", function (event) {
+    event.preventDefault();
+    uploadArea.classList.add("dragover");
+  });
+
+  uploadArea.addEventListener("dragleave", function () {
+    uploadArea.classList.remove("dragover");
+  });
+
+  uploadArea.addEventListener("drop", function (event) {
+
+    event.preventDefault();
+    uploadArea.classList.remove("dragover");
+
+    const files = event.dataTransfer.files;
+
+    if (!files || !files.length) {
+      return;
+    }
+
+    fileInput.files = files;
+
+    fileInput.dispatchEvent(
+      new Event("change", { bubbles: true })
+    );
+  });
+
+  mode.addEventListener("change", function () {
+
+    if (mode.value === "longest") {
+
+      longestSideInput.disabled = false;
+
+    } else {
+
+      longestSideInput.disabled = true;
+    }
+
+    if (mode.value === "stretch" ||
+        mode.value === "fit" ||
+        mode.value === "crop") {
+
+      widthInput.disabled = false;
+      heightInput.disabled = false;
+
+    } else {
+
+      widthInput.disabled = true;
+      heightInput.disabled = true;
+    }
+  });
+
+  compressButton.addEventListener(
+    "click",
+    compressImage
+  );
+
+  mode.dispatchEvent(
+    new Event("change")
+  );
+
+})();
+</script>
+
+</body>
+</html>
